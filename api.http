@@ -1,0 +1,8 @@
+# GET http://localhost:4800/api/course/1
+
+POST http://localhost:4800/api/courses/newCourse HTTP/1.1
+Content-Type: application/json
+
+{
+    "name":"Nilima"
+}
