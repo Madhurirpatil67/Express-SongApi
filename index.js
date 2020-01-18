@@ -15,8 +15,6 @@ let courses=[
         name:"rtrey"},
         {id:5,
         name:"gfdsfsg" },
-        { id:6,
-        name:"gfsdsfs"},
 ];
 
 app.get("/api/courses",(req,res)=>{
