@@ -35,12 +35,9 @@ app.get("/api/course/:id",(req,res)=>{
 
 //insert
 app.post("/api/courses/newCourse",(req,res)=>{
-  let schema=Joi.object({
-    name:Joi.string().min(4).max(10).required().alphanum()
-  });
-  let {error}=schema.validate(req.body);
+  let {error}=validateError(req.body);
   if(error){
-    return res.send(error.details[0].message);
+     res.send(error.details[0].message);
   }
   let course={
      id:courses.length+1,
@@ -54,11 +51,11 @@ app.post("/api/courses/newCourse",(req,res)=>{
 app.put("/api/courses/updateCourse/:id",(req,res)=>{
   let course=courses.find(item=>item.id===parseInt(req.params.id))
   if(!course){
-      return res.status(404).send({message:"Invalid Course id"});
+    res.status(404).send({message:"Invalid Course id"});
   }
   let {error}=validateError(req.body);
   if(error){
-    return res.send(error.details[0].message);
+     res.send(error.details[0].message);
   }
   course.name=req.body.name;
   res.send(courses);
@@ -68,7 +65,7 @@ app.put("/api/courses/updateCourse/:id",(req,res)=>{
 app.delete("/api/courses/removeCourse/:id",(req,res)=>{
   let course=courses.find(item=>item.id===parseInt(req.params.id))
   if(!course){
-      return res.status(404).send({message:"Invalid Course id"});
+       res.status(404).send({message:"Invalid Course id"});
   }
   let index=courses.indexOf(course);
   courses.splice(index,1);
